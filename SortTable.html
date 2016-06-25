@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>排序表格</title>
+		<style type="text/css">
+			.container{
+				width: 1000px;
+				margin: auto;
+			}
+			table{
+				border: 1px solid #aaa;
+			}
+			th, td{
+				border: 1px solid #aaa;
+				text-align: center;
+				width: 200px;
+			}
+			tbody>tr:nth-child(odd){
+				background: #ACE6AC;
+				color: #666;
+			}
+			tbody>tr:nth-child(even){
+				background: #E6CCAC;
+				color: #666;
+			}
+			.sort, .sort-modern{
+				cursor: pointer;
+			}
+			#active{
+				background: red;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">	
+			<h3>传统方式：每次更改排序方式,用innerHTML或documentFragment者来替换</h3>
+			<table>
+				<thead>
+					<tr>
+						<th class="sort" sort-key="uid" id="active">uid</th>
+						<th>username</th>
+						<th class="sort" sort-key="age">age</th>
+						<th class="sort" sort-key="height">height</th>
+					</tr>
+				</thead>
+				<tbody id="tradition-way"></tbody>
+			</table>
+			<h3>虚拟方式：在js内形成DOM树,而后将其渲染到页面</h3>
+			<div id="modern-way">
+				
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="require.js" data-main="sort-table"></script>
+</html>
