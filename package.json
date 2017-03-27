@@ -1,0 +1,24 @@
+{
+  "name": "a-simple-virtual-dom",
+  "version": "1.0.0",
+  "description": "模仿[livoras大神思路](https://github.com/livoras/simple-virtual-dom)实现",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zp1996/Virtual-DOM.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zp1996/Virtual-DOM/issues"
+  },
+  "homepage": "https://github.com/zp1996/Virtual-DOM#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "webpack": "^2.3.2"
+  }
+}
