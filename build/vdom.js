@@ -63,11 +63,61 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__util__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+var Element = function () {
+    function Element(tagName, props) {
+        var children = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+
+        _classCallCheck(this, Element);
+
+        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__util__["isArray"])(props)) {
+            children = props;
+            props = {};
+        }
+        this.tagName = tagName;
+        this.props = props || {};
+        this.children = children;
+    }
+
+    _createClass(Element, [{
+        key: 'render',
+        value: function render() {
+            // 利用递归将内存中的树形结构渲染到页面上
+            var ele = document.createElement(this.tagName);
+            // 添加节点属性
+            for (var prop in this.props) {
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__util__["setAttr"])(ele, prop, this.props[prop]);
+            }
+            for (var i = 0, child; child = this.children[i++];) {
+                var childEle = child instanceof Element ? child.render() : document.createTextNode(child);
+                ele.appendChild(childEle);
+            }
+            return ele;
+        }
+    }]);
+
+    return Element;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (Element);
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports) {
 
 // 获取需要进行比对的键的值
@@ -188,21 +238,80 @@ module.exports = function (oldList, newList, key) {
 };
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__list_diff__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__list_diff__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__list_diff___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__list_diff__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(0);
+
 
 
 var target = ['a', 'b', 'c', 'd', 'e'],
     source = ['e', 'd', 'e'];
 
+var root = new __WEBPACK_IMPORTED_MODULE_1__element__["a" /* default */]('ul', {
+    class: 'test-ul'
+}, [new __WEBPACK_IMPORTED_MODULE_1__element__["a" /* default */]('li', ['Text1']), new __WEBPACK_IMPORTED_MODULE_1__element__["a" /* default */]('li', ['Text2']), new __WEBPACK_IMPORTED_MODULE_1__element__["a" /* default */]('li', ['Text3'])]);
+
+document.getElementById('root').appendChild(root.render());
+
 console.log(__WEBPACK_IMPORTED_MODULE_0__list_diff___default()(source, target, function (_) {
     return _;
 }));
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+var RE = /\[object\s|\]/g,
+    util = {};
+
+var setStyle = function setStyle(obj) {
+    var res = '';
+    for (var key in obj) {
+        res += key + ': ' + obj[key] + ';';
+    }
+};
+
+util.type = function (obj) {
+    return Object.prototype.toString.call(obj).replace(RE, "");
+};
+
+util.each = function (arr, fn) {
+    for (var i = 0, len = arr.length; i < len; i++) {
+        fn(arr[i], i);
+    }
+};
+
+util.each(['String', 'Array'], function (val) {
+    util['is' + val] = function (obj) {
+        return util.type(obj) === val;
+    };
+});
+
+util.setAttr = function (ele, attr, val) {
+    switch (attr) {
+        case 'style':
+            ele.style.cssText = setStyle(val);
+            break;
+        case 'value':
+            var tagName = ele.tagName;
+
+            if (tagName === 'textarea') {
+                ele.innerText = val;
+            } else {
+                ele.setAttribute(attr, val);
+            }
+            break;
+        default:
+            ele.setAttribute(attr, val);
+    }
+};
+
+module.exports = util;
 
 /***/ })
 /******/ ]);
