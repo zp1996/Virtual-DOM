@@ -1,7 +1,7 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     buildPath = `${__dirname}/build`,
-    demos = ['demo'],
+    demos = ['demo', 'sort-table'],
     lib = 'vdom';
 
 const HtmlWebpackPlugins = demos.map(

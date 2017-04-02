@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -216,6 +216,25 @@ var patch = function patch(node, patches) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__diff__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__patch__ = __webpack_require__(1);
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    Element: __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */],
+    diff: __WEBPACK_IMPORTED_MODULE_1__diff__["a" /* default */],
+    patch: __WEBPACK_IMPORTED_MODULE_2__patch__["a" /* patch */]
+});
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__list_diff__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__list_diff___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__list_diff__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__patch__ = __webpack_require__(1);
@@ -318,7 +337,7 @@ var diff = function diff(oldTree, newTree) {
 /* harmony default export */ __webpack_exports__["a"] = (diff);
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -377,25 +396,6 @@ var Element = function () {
 }();
 
 /* harmony default export */ __webpack_exports__["a"] = (Element);
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__diff__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__patch__ = __webpack_require__(1);
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    Element: __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */],
-    diff: __WEBPACK_IMPORTED_MODULE_1__diff__["a" /* default */],
-    patch: __WEBPACK_IMPORTED_MODULE_2__patch__["a" /* patch */]
-});
 
 /***/ }),
 /* 5 */
@@ -517,6 +517,32 @@ module.exports = function (oldList, newList, key) {
     }
     return { moves: moves, children: children };
 };
+
+/***/ }),
+/* 6 */,
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_index__ = __webpack_require__(2);
+
+
+var Element = __WEBPACK_IMPORTED_MODULE_0__lib_index__["default"].Element,
+    diff = __WEBPACK_IMPORTED_MODULE_0__lib_index__["default"].diff,
+    patch = __WEBPACK_IMPORTED_MODULE_0__lib_index__["default"].patch;
+
+
+var ul = new Element('ul', { id: 'list' }, [new Element('li', { class: 'item', key: '4' }, ['Item 4']), new Element('li', { class: 'item', key: '1' }, ['Item 1']), new Element('li', { class: 'item', key: '2' }, ['Item 2']), new Element('li', { class: 'item', key: '3' }, ['Item 3'])]);
+var ul1 = new Element('ul', { id: 'list' }, [new Element('li', { class: 'item', key: '1' }, ['Item 1']), new Element('li', { class: 'item', key: '2' }, ['Item 2']), new Element('li', { class: 'item', key: '3' }, ['Item 3']), new Element('li', { class: 'item', key: '5' }, ['Item 5']), new Element('li', { class: 'item', key: '6' }, ['Item 6'])]);
+var patches = diff(ul, ul1),
+    dom = ul.render();
+
+document.body.appendChild(dom);
+
+setTimeout(function () {
+    patch(dom, patches);
+}, 2000);
 
 /***/ })
 /******/ ]);

@@ -1,4 +1,8 @@
 import MergeSort from './MergeSort';
+import vdom from '../../lib/index';
+
+const { Element, diff, patch } = vdom;
+
 const data = [
 	{ uid: 1, username: 'xiaoming', age: 20, height: 178 },
 	{ uid: 2, username: 'xiaohong', age: 48, height: 165 },
@@ -52,26 +56,26 @@ const $ = id => document.getElementById(id);
 	function formTh () {
 		return keys.map((val, i) => {
 			if (val === "username")
-				return E("th", [val]);
+				return new Element("th", [val]);
 			var props = {class: "sort-modern", "sort-key": val};
 			i === active ? props["id"] = "active" : 1;
-			return E("th", props, [val]);
+			return new Element("th", props, [val]);
 		});
 	}
 	// form the tbody
 	function formTd () {
 		return data.map(val => {
-			return E("tr", {key: val.uid}, [
-				E("td", [val.uid]),
-				E("td", [val.username]),
-				E("td", [val.age]),
-				E("td", [val.height]),
+			return new Element("tr", {key: val.uid}, [
+				new Element("td", [val.uid]),
+				new Element("td", [val.username]),
+				new Element("td", [val.age]),
+				new Element("td", [val.height]),
 			]);
 		});
 	}
-	var table = new E("table", [
-			E("thead", [ E("tr", ths) ]),
-			E("tbody", trs)
+	var table = new Element("table", [
+			new Element("thead", [ new Element("tr", ths) ]),
+			new Element("tbody", trs)
 		]),
 		tableDom = table.render();
 	modern.appendChild(tableDom);
@@ -89,9 +93,9 @@ const $ = id => document.getElementById(id);
 					// update tbody
 					trs = formTd();
 					// form the new tree
-					var newTable = new E("table", [
-						E("thead", [ E("tr", ths) ]),
-						E("tbody", trs)
+					var newTable = new Element("table", [
+						new Element("thead", [ new Element("tr", ths) ]),
+						new Element("tbody", trs)
 					]);
 					// get patches
 					var patches = diff(table, newTable);
