@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -391,16 +391,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var ul = new __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */]('ul', { id: 'list' }, [new __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */]('li', { class: 'item', key: '4' }, ['Item 4']), new __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */]('li', { class: 'item', key: '1' }, ['Item 1']), new __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */]('li', { class: 'item', key: '2' }, ['Item 2']), new __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */]('li', { class: 'item', key: '3' }, ['Item 3'])]);
-var ul1 = new __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */]('ul', { id: 'list' }, [new __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */]('li', { class: 'item', key: '1' }, ['Item 1']), new __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */]('li', { class: 'item', key: '2' }, ['Item 2']), new __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */]('li', { class: 'item', key: '3' }, ['Item 3']), new __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */]('li', { class: 'item', key: '5' }, ['Item 5']), new __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */]('li', { class: 'item', key: '6' }, ['Item 6'])]);
-var patches = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__diff__["a" /* default */])(ul, ul1),
-    dom = ul.render();
-
-document.body.appendChild(dom);
-
-setTimeout(function () {
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__patch__["a" /* patch */])(dom, patches);
-}, 2000);
+/* harmony default export */ __webpack_exports__["default"] = ({
+    Element: __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */],
+    diff: __WEBPACK_IMPORTED_MODULE_1__diff__["a" /* default */],
+    patch: __WEBPACK_IMPORTED_MODULE_2__patch__["a" /* patch */]
+});
 
 /***/ }),
 /* 5 */
@@ -522,6 +517,31 @@ module.exports = function (oldList, newList, key) {
     }
     return { moves: moves, children: children };
 };
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_index__ = __webpack_require__(4);
+
+
+var Element = __WEBPACK_IMPORTED_MODULE_0__lib_index__["default"].Element,
+    diff = __WEBPACK_IMPORTED_MODULE_0__lib_index__["default"].diff,
+    patch = __WEBPACK_IMPORTED_MODULE_0__lib_index__["default"].patch;
+
+
+var ul = new Element('ul', { id: 'list' }, [new Element('li', { class: 'item', key: '4' }, ['Item 4']), new Element('li', { class: 'item', key: '1' }, ['Item 1']), new Element('li', { class: 'item', key: '2' }, ['Item 2']), new Element('li', { class: 'item', key: '3' }, ['Item 3'])]);
+var ul1 = new Element('ul', { id: 'list' }, [new Element('li', { class: 'item', key: '1' }, ['Item 1']), new Element('li', { class: 'item', key: '2' }, ['Item 2']), new Element('li', { class: 'item', key: '3' }, ['Item 3']), new Element('li', { class: 'item', key: '5' }, ['Item 5']), new Element('li', { class: 'item', key: '6' }, ['Item 6'])]);
+var patches = diff(ul, ul1),
+    dom = ul.render();
+
+document.body.appendChild(dom);
+
+setTimeout(function () {
+    patch(dom, patches);
+}, 2000);
 
 /***/ })
 /******/ ]);
