@@ -1,6 +1,3 @@
-import MergeSort from './MergeSort';
-import vdom from '../../lib/index';
-
 const { Element, diff, patch } = vdom;
 
 const data = [

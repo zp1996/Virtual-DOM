@@ -1,5 +1,3 @@
-import vdom from '../../lib/index';
-
 const { Element, diff, patch } = vdom;
 
 const ul = new Element('ul', { id: 'list' }, [
@@ -18,7 +16,7 @@ const ul1 = new Element('ul', { id: 'list' }, [
 const patches = diff(ul , ul1),
     dom = ul.render();
 
-document.body.appendChild(dom);
+document.getElementById('root').appendChild(dom);
 
 setTimeout(function () {
     patch(dom, patches);

@@ -27,4 +27,3 @@ function MergeSort (arr, key) {
 		}
 	}
 }
-export default MergeSort;
